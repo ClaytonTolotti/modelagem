@@ -1,5 +1,7 @@
 #Fonte dos dados: http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?QTgzOQ==
 setwd("~/git/modelagem")
+#pegar os dados de dezembro e janeiro de 2017
+#região Itaporanga
 dados_temp <- read.csv(file="dados", header = TRUE, sep=",")
 dados <- data.frame(
                     cod_estacao = c(dados_temp$codigo_estacao), 
@@ -8,7 +10,7 @@ dados <- data.frame(
                     temp_max = c(dados_temp$temp_max)
                   )
 #pegar as mínimas e máximas
-temperatura_base <- 8
+temperatura_base <- 7.1
 qnt_horas <- 24
 dias <- length(dados_temp$data)/qnt_horas
 minimas <- data.frame(
@@ -42,7 +44,21 @@ minimas <- data.frame(
                       d28 = min(dados$temp_min[(qnt_horas*27+1):(qnt_horas*28)]),
                       d29 = min(dados$temp_min[(qnt_horas*28+1):(qnt_horas*29)]),
                       d30 = min(dados$temp_min[(qnt_horas*29+1):(qnt_horas*30)]),
-                      d31 = min(dados$temp_min[(qnt_horas*30+1):(qnt_horas*31)])
+                      d31 = min(dados$temp_min[(qnt_horas*30+1):(qnt_horas*31)]),
+                      d32 = min(dados$temp_min[(qnt_horas*31+1):(qnt_horas*32)]),
+                      d33 = min(dados$temp_min[(qnt_horas*32+1):(qnt_horas*33)]),
+                      d34 = min(dados$temp_min[(qnt_horas*33+1):(qnt_horas*34)]),
+                      d35 = min(dados$temp_min[(qnt_horas*34+1):(qnt_horas*35)]),
+                      d36 = min(dados$temp_min[(qnt_horas*35+1):(qnt_horas*36)]),
+                      d37 = min(dados$temp_min[(qnt_horas*36+1):(qnt_horas*37)]),
+                      d38 = min(dados$temp_min[(qnt_horas*37+1):(qnt_horas*38)]),
+                      d39 = min(dados$temp_min[(qnt_horas*38+1):(qnt_horas*39)]),
+                      d40 = min(dados$temp_min[(qnt_horas*39+1):(qnt_horas*40)]),
+                      d41 = min(dados$temp_min[(qnt_horas*40+1):(qnt_horas*41)]),
+                      d42 = min(dados$temp_min[(qnt_horas*41+1):(qnt_horas*42)]),
+                      d43 = min(dados$temp_min[(qnt_horas*42+1):(qnt_horas*43)]),
+                      d44 = min(dados$temp_min[(qnt_horas*43+1):(qnt_horas*44)]),
+                      d45 = min(dados$temp_min[(qnt_horas*44+1):(qnt_horas*45)])
                     )
 
 maximas <- data.frame(
@@ -76,7 +92,21 @@ maximas <- data.frame(
                       d28 = max(dados$temp_max[(qnt_horas*27+1):(qnt_horas*28)]),
                       d29 = max(dados$temp_max[(qnt_horas*28+1):(qnt_horas*29)]),
                       d30 = max(dados$temp_max[(qnt_horas*29+1):(qnt_horas*30)]),
-                      d31 = max(dados$temp_max[(qnt_horas*30+1):(qnt_horas*31)])
+                      d31 = max(dados$temp_max[(qnt_horas*30+1):(qnt_horas*31)]),
+                      d32 = max(dados$temp_max[(qnt_horas*31+1):(qnt_horas*32)]),
+                      d33 = max(dados$temp_max[(qnt_horas*32+1):(qnt_horas*33)]),
+                      d34 = max(dados$temp_max[(qnt_horas*33+1):(qnt_horas*34)]),
+                      d35 = max(dados$temp_max[(qnt_horas*34+1):(qnt_horas*35)]),
+                      d36 = max(dados$temp_max[(qnt_horas*35+1):(qnt_horas*36)]),
+                      d37 = max(dados$temp_max[(qnt_horas*36+1):(qnt_horas*37)]),
+                      d38 = max(dados$temp_max[(qnt_horas*37+1):(qnt_horas*38)]),
+                      d39 = max(dados$temp_max[(qnt_horas*38+1):(qnt_horas*39)]),
+                      d40 = max(dados$temp_max[(qnt_horas*39+1):(qnt_horas*40)]),
+                      d41 = max(dados$temp_max[(qnt_horas*40+1):(qnt_horas*41)]),
+                      d42 = max(dados$temp_max[(qnt_horas*41+1):(qnt_horas*42)]),
+                      d43 = max(dados$temp_max[(qnt_horas*42+1):(qnt_horas*43)]),
+                      d44 = max(dados$temp_max[(qnt_horas*43+1):(qnt_horas*44)]),
+                      d45 = max(dados$temp_max[(qnt_horas*44+1):(qnt_horas*45)])
                     )
 
 medias <- data.frame( 
@@ -104,12 +134,36 @@ medias <- data.frame(
                       m22 = (maximas$d22 - minimas$d22) - temperatura_base / 2,
                       m23 = (maximas$d23 - minimas$d23) - temperatura_base / 2,
                       m24 = (maximas$d24 - minimas$d24) - temperatura_base / 2,
-                      m25 = (maximas$d24 - minimas$d25) - temperatura_base / 2,
-                      m26 = (maximas$d24 - minimas$d26) - temperatura_base / 2,
-                      m27 = (maximas$d24 - minimas$d27) - temperatura_base / 2,
-                      m28 = (maximas$d24 - minimas$d28) - temperatura_base / 2,
-                      m29 = (maximas$d24 - minimas$d29) - temperatura_base / 2,
-                      m30 = (maximas$d24 - minimas$d30) - temperatura_base / 2,
-                      m31 = (maximas$d24 - minimas$d31) - temperatura_base / 2
+                      m25 = (maximas$d25 - minimas$d25) - temperatura_base / 2,
+                      m26 = (maximas$d26 - minimas$d26) - temperatura_base / 2,
+                      m27 = (maximas$d27 - minimas$d27) - temperatura_base / 2,
+                      m28 = (maximas$d28 - minimas$d28) - temperatura_base / 2,
+                      m29 = (maximas$d29 - minimas$d29) - temperatura_base / 2,
+                      m30 = (maximas$d30 - minimas$d30) - temperatura_base / 2,
+                      m31 = (maximas$d31 - minimas$d31) - temperatura_base / 2,
+                      m32 = (maximas$d32 - minimas$d32) - temperatura_base / 2,
+                      m33 = (maximas$d33 - minimas$d33) - temperatura_base / 2,
+                      m34 = (maximas$d34 - minimas$d34) - temperatura_base / 2,
+                      m35 = (maximas$d35 - minimas$d35) - temperatura_base / 2,
+                      m36 = (maximas$d36 - minimas$d36) - temperatura_base / 2,
+                      m37 = (maximas$d37 - minimas$d37) - temperatura_base / 2,
+                      m38 = (maximas$d38 - minimas$d38) - temperatura_base / 2,
+                      m39 = (maximas$d39 - minimas$d39) - temperatura_base / 2,
+                      m40 = (maximas$d40 - minimas$d40) - temperatura_base / 2,
+                      m41 = (maximas$d41 - minimas$d41) - temperatura_base / 2,
+                      m42 = (maximas$d42 - minimas$d42) - temperatura_base / 2,
+                      m43 = (maximas$d43 - minimas$d43) - temperatura_base / 2,
+                      m44 = (maximas$d44 - minimas$d44) - temperatura_base / 2,
+                      m45 = (maximas$d45 - minimas$d45) - temperatura_base / 2
                     )
 
+vetor_medias <- c(t(medias))
+fase_larval <- (7.3 * temperatura_base) + 1
+fase_pupa <- (2.3 * temperatura_base) + 1
+fase_ovo_adulto <- (14.3 * temperatura_base) + 1
+qnt_gd_larva <- length(which(cumsum(vetor_medias) <= fase_larval))
+qnt_gd_pupa <- length(which(cumsum(vetor_medias) <= fase_pupa))
+qnt_gd_ovo <- length(which(cumsum(vetor_medias) <= fase_ovo_adulto))
+graus_dias_larva <- sum(medias[1:qnt_gd_larva])
+graus_dias_pupa <- sum(medias[1:qnt_gd_pupa])
+graus_dias_ovo <- sum(medias[1:qnt_gd_ovo])
