@@ -157,13 +157,37 @@ medias <- data.frame(
                       m45 = (maximas$d45 - minimas$d45) - temperatura_base / 2
                     )
 
+temp_media = (rowMeans(maximas) + rowMeans(minimas))/2
 vetor_medias <- c(t(medias))
-fase_larval <- (7.3 * temperatura_base) + 1
-fase_pupa <- (2.3 * temperatura_base) + 1
-fase_ovo_adulto <- (14.3 * temperatura_base) + 1
-qnt_gd_larva <- length(which(cumsum(vetor_medias) <= fase_larval))
-qnt_gd_pupa <- length(which(cumsum(vetor_medias) <= fase_pupa))
-qnt_gd_ovo <- length(which(cumsum(vetor_medias) <= fase_ovo_adulto))
-graus_dias_larva <- sum(medias[1:qnt_gd_larva])
-graus_dias_pupa <- sum(medias[1:qnt_gd_pupa])
-graus_dias_ovo <- sum(medias[1:qnt_gd_ovo])
+
+#Itaporanga
+fase_larval_ita <- (21 * temperatura_base)
+fase_pupa_ita <- (6.6 * temperatura_base)
+fase_ovo_adulto_ita <- (36.8 * temperatura_base)
+qnt_gd_larva_ita <- 21
+qnt_gd_pupa_ita <- 6.6
+qnt_gd_ovo_ita <- 36.8
+
+#Passo Fundo
+fase_larval_pf <- (21 * temperatura_base) + 1
+fase_pupa_pf <- (6.6 * temperatura_base) + 1
+fase_ovo_adulto_pf <- (36.8 * temperatura_base) + 1
+qnt_gd_larva_pf <- length(which(cumsum(vetor_medias) <= fase_larval_pf))
+qnt_gd_pupa_pf <- length(which(cumsum(vetor_medias) <= fase_pupa_pf))
+qnt_gd_ovo_pf <- length(which(cumsum(vetor_medias) <= fase_ovo_adulto_pf))
+
+graus_dias_larva <- sum(medias[1:qnt_gd_larva_pf])
+graus_dias_pupa <- sum(medias[1:qnt_gd_pupa_pf])
+graus_dias_ovo <- sum(medias[1:qnt_gd_ovo_pf])
+
+print("Comparação entre Itaporanga x Passo Fundo")
+print(paste("Temperatura média Passo Fundo: ", round(temp_media, 1)))
+print("Período: 01/10/2018 a 17/11/2018")
+
+print(paste("Fase larval em graus dias para Passo Fundo: ", fase_larval_pf, " Itaporanga: ", fase_larval_ita))
+print(paste("Fase pupa em graus dias para Passo Fundo: ", fase_pupa_pf, " Itaporanga: ", fase_pupa_ita))
+print(paste("Fase ovo-adulto em graus dias para Passo Fundo: ", fase_ovo_adulto_pf, " Itaporanga: ", fase_ovo_adulto_ita))
+
+print(paste("Quantidade de dias para desenvolvimento larval: ", qnt_gd_larva_pf, " Itaporanga: ", qnt_gd_larva_ita))
+print(paste("Quantidade de dias para desenvolvimento pupa: ", qnt_gd_pupa_pf, " Itaporanga: ", qnt_gd_pupa_ita))
+print(paste("Quantidade de dias para desenvolvimento ovo-adulto: ", qnt_gd_ovo_pf, " Itaporanga: ", qnt_gd_ovo_ita))
