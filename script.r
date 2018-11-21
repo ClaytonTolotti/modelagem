@@ -1,4 +1,6 @@
 #Fonte dos dados: http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?QTgzOQ==
+library(DT)
+
 setwd("C:\\Users\\clayton.tolotti\\git\\modelagem")
 
 dados_temp <- read.csv(file="dados", header = TRUE, sep=",")
@@ -62,3 +64,29 @@ print(paste("Fase ovo-adulto em graus dias para Passo Fundo: ", fase_ovo_adulto_
 print(paste("Quantidade de dias para desenvolvimento larval: ", qnt_gd_larva_pf, " Itaporanga: ", qnt_gd_larva_ita))
 print(paste("Quantidade de dias para desenvolvimento pupa: ", qnt_gd_pupa_pf, " Itaporanga: ", qnt_gd_pupa_ita))
 print(paste("Quantidade de dias para desenvolvimento ovo-adulto: ", qnt_gd_ovo_pf, " Itaporanga: ", qnt_gd_ovo_ita))
+
+grafico <- data.frame("cidade" = 1:2, "graus-dias"=1:2)
+grafico$cidade <- c("Passo Fundo", "Itaporanga")
+grafico$graus.dias <- c(qnt_gd_ovo_pf, qnt_gd_ovo_ita)
+
+par(mgp=c(1,1,0))
+grid(nx=NA, ny=NULL)
+barplot(grafico$graus.dias, main="Passo Fundo \nx\n Itaporanga", names.arg = grafico$cidade, ylim=c(0,50), cex.names = 0.8)
+
+sumario_gd <- matrix(
+                    c("Passo Fundo", fase_larval_pf, fase_pupa_pf, fase_ovo_adulto_pf,  
+                      "Itaporanga", fase_larval_ita, fase_pupa_ita, fase_ovo_adulto_ita
+                  ), ncol=4, byrow=TRUE)
+colnames(sumario_gd) <- c("Cidade", "Larva GD", "Pupa GD", "Ovo-Adulto GD")
+
+sumario_qnt <- matrix(
+  c(
+    "Passo Fundo", qnt_gd_larva_pf, qnt_gd_pupa_pf, qnt_gd_ovo_pf,  
+    "Itaporanga", qnt_gd_larva_ita, qnt_gd_pupa_ita, qnt_gd_ovo_ita
+  ), ncol=4, byrow=TRUE)
+
+colnames(sumario_qnt) <- c("Cidade", "Larva QNT", "Pupa QNT", "Ovo-Adulto QNT")
+
+
+datatable(sumario_gd)
+datatable(sumario_qnt)
