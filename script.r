@@ -1,3 +1,5 @@
+#Clayton Tolotti: 98414
+#Lucas Altmann: 113868 
 #Fonte dos dados: http://www.inmet.gov.br/sonabra/pg_dspDadosCodigo_sim.php?QTgzOQ==
 library(DT)
 
